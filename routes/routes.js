@@ -21,7 +21,7 @@ module.exports = (app) => {
     let input = req.body;
     input.id = uniqid()
     let data = JSON.parse(fs.readFileSync('db/db.json','utf8'));
-    note.push(input);
+    data.push(input);
     fs.writeFileSync('db/db.json', JSON.stringify(data));
     res.JSON(data);
     
@@ -31,9 +31,9 @@ module.exports = (app) => {
   app.delete('/api/notes/:id', (req, res) => {
     let noteId = req.params.id.toString();
     let data = JSON.parse(fs.readFileSync('db/db.json', 'utf8'));
-    const updateData = data.filter( note => note.id.toString()!== noteId);
-    fs.writeFileSync('db/db.json', JSON.stringify(updateData));
-    res.json(updateData);
+    const update = data.filter(note => note.id.toString()!== noteId);
+    fs.writeFileSync('db/db.json', JSON.stringify(update));
+    res.json(update);
   });
 
  // If no matching route is found default to home
