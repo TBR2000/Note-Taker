@@ -8,7 +8,7 @@ const uniqid = require('uniqid');
 module.exports = (app) => {
   // GET handling
   app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
+    res.sendFile(path.join(__dirname, '../public/notes.html'));
   });
 
   app.get('/api/notes', (req, res) => {
@@ -38,7 +38,7 @@ module.exports = (app) => {
 
  // If no matching route is found default to home
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
+    res.sendFile(path.join(__dirname, '../public/index.html'));
   });
 
 
