@@ -12,7 +12,7 @@ module.exports = (app) => {
   });
 
   app.get('/api/notes', (req, res) => {
-    let data = JSON.parse(fs.readFileSync("../db/db.json", "utf8"));
+    let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     res.json(data);
   });
 
@@ -20,9 +20,9 @@ module.exports = (app) => {
   app.post("/api/notes", function(req, res) {
     let newNote = req.body;
     newNote.id = uniqid.time()
-    let data = JSON.parse(fs.readFileSync("../db/db.json", "utf8"));
+    let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     note.push(newNote);
-    fs.writeFileSync('../db/db.json', JSON.stringify(data));
+    fs.writeFileSync('./db/db.json', JSON.stringify(data));
     res.JSON(data);
     
   });
@@ -30,9 +30,9 @@ module.exports = (app) => {
   // DELETE handling
   app.delete("/api/notes/:id", (req, res) => {
     let noteId = req.params.id.toString();
-    let data = JSON.parse(fs.readFileSync("../db/db.json", "utf8"));
+    let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     const updateData = data.filter( note => note.id.toString()!== noteId);
-    fs.writeFileSync('../db/db.json', JSON.stringify(updateData));
+    fs.writeFileSync('./db/db.json', JSON.stringify(updateData));
     res.json(updateData);
   });
 
