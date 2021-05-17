@@ -28,10 +28,9 @@ module.exports = (app) => {
   });
 
   // DELETE handling
-  app.delete('/api/notes', (req, res) => {
-    let Id = req.params.id.toString();
+  app.delete('/api/notes/:id', (req, res) => {
      let data = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
-     const update = data.filter(data => data.id.toString() !== Id);
+     const update = data.splice(req.params.id, 1);
      fs.writeFileSync('db/db.json', JSON.stringify(update));
      res.json(update);
   });
