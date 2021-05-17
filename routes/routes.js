@@ -28,11 +28,11 @@ module.exports = (app) => {
   });
 
   // DELETE handling
-  app.delete('/api/notes/:id', (req, res) => {
+  app.delete('/api/notes', (req, res) => {
     let Id = req.params.id.toString();
-     let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+     let data = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
      const update = data.filter(data => data.id.toString() !== Id);
-     fs.writeFileSync('./db/db.json', JSON.stringify(update));
+     fs.writeFileSync('db/db.json', JSON.stringify(update));
      res.json(update);
   });
 
