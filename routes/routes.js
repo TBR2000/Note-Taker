@@ -10,13 +10,15 @@ module.exports = (app) => {
   // Below code handles when users "visit" a page.
   // In each of the below cases the user is shown an HTML page of content
 
-  app.get('/tables', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/tables.html'));
+  app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/notes.html'));
   });
 
-  app.get('/reserve', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/reserve.html'));
+  app.get('/api/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '../db/db.json'));
   });
+
+  
 
   // If no matching route is found default to home
   app.get('*', (req, res) => {

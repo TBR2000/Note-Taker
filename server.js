@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // ROUTER
-require('./routes/htmlRoutes')(app);
+require('./routes/routes')(app);
 
 
 // LISTENER
