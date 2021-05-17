@@ -18,10 +18,10 @@ module.exports = (app) => {
 
   //POST handling
   app.post('/api/notes', function(req, res) {
-    let newNote = req.body;
-    newNote.id = uniqid()
+    let input = req.body;
+    input.id = uniqid()
     let data = JSON.parse(fs.readFileSync('db/db.json','utf8'));
-    data.push(newNote);
+    data.push(input);
     fs.writeFileSync('db/db.json', JSON.stringify(data));
     res.JSON(data);
     
@@ -30,8 +30,8 @@ module.exports = (app) => {
   // DELETE handling
   app.delete('/api/notes/:id', (req, res) => {
     let noteId = req.params.id.toString();
-    let data = JSON.parse(fs.readFileSync('db/db.json', 'utf8'));
-    const update = data.filter(note => note.id.toString()!== noteId);
+    let data = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
+    const update = data.filter( note => note.id.toString() !== noteId );
     fs.writeFileSync('db/db.json', JSON.stringify(update));
     res.json(update);
   });
