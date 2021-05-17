@@ -21,7 +21,7 @@ module.exports = (app) => {
     let newNote = req.body;
     newNote.id = uniqid
     let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-    notes.push(newNote);
+    note.push(newNote);
     fs.writeFileSync('./db/db.json', JSON.stringify(data));
     res.JSON(data);
     
