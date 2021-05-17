@@ -18,19 +18,26 @@ module.exports = (app) => {
 
   //POST handling
   app.post('/api/notes', function(req, res) {
+    // get request from body and add unique ID
     let input = req.body;
     input.id = uniqid()
+    // Retrieve JSON and push input 
     let data = JSON.parse(fs.readFileSync('db/db.json','utf8'));
     data.push(input);
+    //Write updated json back to db
     fs.writeFileSync('db/db.json', JSON.stringify(data));
     res.JSON(data);
   });
 
   // DELETE handling
   app.delete('/api/notes/:id', (req, res) => {
+    // Define id for use
       let Id = req.params.id
+      //Retrieve json
       let data = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
+      // Filter by id to remove selection
       const update = data.filter( data => data.id.toString() !== Id );
+      //Write updated json to db
       fs.writeFileSync('db/db.json', JSON.stringify(update));
       res.json(update);
   });
