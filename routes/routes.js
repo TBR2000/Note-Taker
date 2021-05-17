@@ -29,11 +29,11 @@ module.exports = (app) => {
 
   // DELETE handling
   app.delete('/api/notes/:id', (req, res) => {
-    let noteId = req.params.id.toString();
-    let data = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
-    const update = data.filter( note => note.id.toString() !== noteId );
-    fs.writeFileSync('db/db.json', JSON.stringify(update));
-    res.json(update);
+    let Id = req.params.id.toString();
+     let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+     const update = data.filter(data => data.id.toString() !== Id);
+     fs.writeFileSync('./db/db.json', JSON.stringify(update));
+     res.json(update);
   });
 
  // If no matching route is found default to home
