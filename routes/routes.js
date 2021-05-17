@@ -1,28 +1,37 @@
 // DEPENDENCIES
 const path = require('path');
+const fs = require('fs');
+const uniqid = require('uniqid');
 
 
 // ROUTING
 
 module.exports = (app) => {
   // GET handling
-
   app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/notes.html'));
   });
 
   app.get('/api/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, '../db/db.json'));
+    let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    res.json(data);
   });
- 
+  //POSt handling
+  app.post("/api/notes", function(req, res) {
+    let newNote = req.body;
+    newNote.id = uniqid.time()
+    let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    notes.push(newNote);
+    fs.writeFileSync('./db/db.json', JSON.stringify(data));
+    res.JSON(data);
+    
+});
+
+}
   // If no matching route is found default to home
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
   });
 
- //POST handling
-  app.post('/api/notes', (req, res) => {
-   
-   
-  });
+
 };

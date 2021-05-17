@@ -3,7 +3,7 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
-const uniqid = require('uniqid');
+
 
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
@@ -25,11 +25,7 @@ const hide = (elem) => {
 };
 
 // activeNote is used to keep track of the note in the textarea
-let activeNote = {
-  title: `${noteTitle}`,
-  text: `${noteText}`,
-  id: `${id}`
-};
+let activeNote = {};
 
 const getNotes = () =>
   fetch('/api/notes', {
